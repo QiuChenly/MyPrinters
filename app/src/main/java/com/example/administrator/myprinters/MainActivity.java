@@ -53,17 +53,21 @@ public class MainActivity extends AppCompatActivity {
             packageInfo = context.getPackageManager().getPackageInfo(packagename, 0);
         }catch (PackageManager.NameNotFoundException e) {
             packageInfo = null;
-            e.printStackTrace();
         }
         if(packageInfo ==null){
-            //System.out.println("没有安装");
             return false;
         }else{
-            //System.out.println("已经安装");
             return true;
         }
     }
-    public void printDocx( String URIs) throws IOException {
+
+
+    /**
+     * 异步打印文档 安卓4.4+ targetSdkVersion 21 即可运行
+     * @param URIs 本地文件地址
+     * @throws IOException IO异常
+     */
+    public void printDocx(String URIs) throws IOException {
         if (isAppInstalled(getApplicationContext(), "com.dynamixsoftware.printershare.amazon")) {
             try {
                 Uri data_uri = Uri.fromFile(new File(URIs));
